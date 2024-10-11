@@ -1,7 +1,6 @@
 <p align="center">
   <img src="images/rawr.png" />
 </p>
-![issues-pr](https://img.shields.io/github/issues-pr/roqueando/rawr)
 
 > A CLI Project for generate rawr projects.
 
