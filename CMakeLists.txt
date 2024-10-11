@@ -6,8 +6,9 @@ set(RAWR_SOURCE ${RAWR_SOURCE_DIR}/main.cpp)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(RAWR_PROJECT_VERSION 0.1)
-set(RAWR_LIBRARY_NAME core)
+set(RAWR_LIBRARY_NAME rawr)
 set(RAWR_BINARY_NAME rawr)
+set(CMAKE_C_COMPILER "/usr/bin/clang")
 
 include(cmake/UniversalAppleBuild.cmake)
 
@@ -19,9 +20,9 @@ project(
 
 include(cmake/StandardProjectSettings.cmake)
 
-#add_library(project_warnings INTERFACE)
-#include(cmake/CompilerWarnings.cmake)
-#set_project_warnings(project_warnings)
+add_library(project_warnings INTERFACE)
+include(cmake/CompilerWarnings.cmake)
+set_project_warnings(project_warnings)
 
 
 add_executable(${RAWR_BINARY_NAME} src/main.cpp)
