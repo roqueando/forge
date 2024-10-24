@@ -8,7 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(RAWR_PROJECT_VERSION 0.1)
 set(RAWR_LIBRARY_NAME rawr)
 set(RAWR_BINARY_NAME rawr-bin)
-set(CMAKE_C_COMPILER "/usr/bin/clang")
+#set(CMAKE_C_COMPILER "/usr/bin/clang")
+#set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
 
 include(cmake/UniversalAppleBuild.cmake)
 
@@ -28,7 +29,7 @@ add_executable(${RAWR_BINARY_NAME} src/main.cpp)
 set_property(TARGET ${RAWR_BINARY_NAME} PROPERTY OUTPUT_NAME rawr)
 
 target_link_libraries(${RAWR_BINARY_NAME} PUBLIC ${RAWR_LIBRARY_NAME})
-target_compile_features(${RAWR_BINARY_NAME} PRIVATE cxx_std_20) 
+target_compile_features(${RAWR_BINARY_NAME} PRIVATE cxx_std_23)
 
 include(packages.cmake)
 add_subdirectory(src)

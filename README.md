@@ -18,6 +18,10 @@ Before start, verify if you have the following things:
 - you have installed the most recent version of [Clang](https://releases.llvm.org/download.html) or [GCC](https://gcc.gnu.org/install/download.html)
 - you have any of `windows`, `macos`, `linux` operating system
 
+If you want to install development tools for this project you'll need some tools (NOTE, this is only for linux-based environment):
+- cppcheck (for static analysis without building it)
+- inotify-tools (for watching file changes)
+
 ## 🚀 installing rawr
 To install `rawr` you need to:
 - clone repository
@@ -27,6 +31,10 @@ git clone https://github.com/roqueando/rawr.git
 - build and test
 ```sh
 make build
+```
+- run
+```sh
+make run
 ```
 
 ## 😄 be a contributor
