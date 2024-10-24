@@ -2,7 +2,7 @@
 #include <optional>
 #include <rawr/cli.hpp>
 #include <argparse/argparse.hpp>
-#include <expected>
+#include <tl/expected.hpp>
 #include <memory>
 
 using namespace argparse;
@@ -12,7 +12,7 @@ const std::string cli::version()
   return cli::VERSION;
 }
 
-const std::expected<std::unique_ptr<ArgumentParser>, cli::setup_error> cli::setup(const std::string program_name, int argc, char *argv[])
+const tl::expected<std::unique_ptr<ArgumentParser>, cli::setup_error> cli::setup(const std::string program_name, int argc, char *argv[])
 {
   std::unique_ptr<ArgumentParser> program = std::make_unique<ArgumentParser>(program_name);
 
@@ -27,6 +27,6 @@ const std::expected<std::unique_ptr<ArgumentParser>, cli::setup_error> cli::setu
   }
   catch (std::exception &err)
   {
-    return std::unexpected(cli::setup_error::parse_error);
+    return tl::unexpected(cli::setup_error::parse_error);
   }
 }

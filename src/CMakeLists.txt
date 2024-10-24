@@ -7,7 +7,7 @@ file(GLOB SOURCE_LIST
 
 add_library(${RAWR_LIBRARY_NAME} ${SOURCE_LIST} ${HEADER_LIST})
 
-target_link_libraries (${RAWR_LIBRARY_NAME} argparse::argparse)
+target_link_libraries (${RAWR_LIBRARY_NAME} argparse::argparse tl::expected)
 target_include_directories(${RAWR_LIBRARY_NAME} PUBLIC ../include)
 target_compile_features(${RAWR_LIBRARY_NAME} PRIVATE cxx_std_23)
 
