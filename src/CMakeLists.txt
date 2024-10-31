@@ -7,7 +7,7 @@ file(GLOB SOURCE_LIST
 
 add_library(${FORGE_LIBRARY_NAME} ${SOURCE_LIST} ${HEADER_LIST})
 
-target_link_libraries (${FORGE_LIBRARY_NAME} tl::expected leaf)
+target_link_libraries (${FORGE_LIBRARY_NAME} leaf)
 
 target_include_directories(${FORGE_LIBRARY_NAME} PUBLIC ../include)
 target_compile_features(${FORGE_LIBRARY_NAME} PRIVATE cxx_std_20)

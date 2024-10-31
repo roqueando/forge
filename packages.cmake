@@ -1,12 +1,6 @@
 include(cmake/CPM.cmake)
 
-# example package to use std::expected in C++ 17/20
-CPMAddPackage(
-  NAME expected
-  GITHUB_REPOSITORY TartanLlama/expected
-  GIT_TAG v1.1.0
-  GIT_SHALLOW ON)
-
+# example package to use leaf::result<T>
 CPMAddPackage(
   NAME leaf
   GITHUB_REPOSITORY boostorg/leaf

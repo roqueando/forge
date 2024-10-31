@@ -1,11 +1,8 @@
 #pragma once
 
-#include <tl/expected.hpp>
-#include <memory>
-#include <functional>
 #include <boost/leaf.hpp>
 
-using namespace tl;
+namespace leaf = boost::leaf;
 
 namespace cli
 {
@@ -29,7 +26,7 @@ namespace cli
   {
     std::string name;
     std::vector<std::string_view> args;
-    std::function<expected<response, fail>(std::vector<std::string_view>)> action;
+    std::function<leaf::result<int>(std::vector<std::string_view>)> action;
   };
 
   const std::string VERSION = "v1.0";
@@ -38,9 +35,4 @@ namespace cli
   const void usage();
 
   const boost::leaf::result<command> parse(int argc, char *argv[]);
-
-  namespace new_command
-  {
-    const expected<cli::response, cli::fail> run(std::vector<std::string_view>);
-  };
 };
