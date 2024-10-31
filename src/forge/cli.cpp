@@ -1,69 +1,43 @@
-#include <iostream>
+#include <boost/leaf.hpp>
+#include <boost/leaf/error.hpp>
+#include <boost/leaf/result.hpp>
 #include <forge/cli.hpp>
-#include <argparse/argparse.hpp>
-#include <tl/expected.hpp>
+#include <iostream>
 #include <memory>
+#include <tl/expected.hpp>
 
-using namespace argparse;
+namespace leaf = boost::leaf;
 
-const void cli::version()
-{
-  std::cout << cli::VERSION << "\n";
+const void cli::version() { std::cout << cli::VERSION << "\n"; }
+const void cli::usage() {
+  std::cout << "-------------------------------------------------" << std::endl;
+  std::cout << "forge [" << cli::VERSION
+            << "] a tool for generate modern C++ projects" << std::endl;
+  std::cout << "-----------------------USAGE--------------------------"
+            << std::endl;
+
+  std::cout
+      << "#> new <project_name> - generate a new project in the current folder"
+      << std::endl;
 }
 
-const tl::expected<std::shared_ptr<ArgumentParser>, cli::error> cli::setup(const std::string program_name, int argc, char *argv[])
-{
-  std::shared_ptr<ArgumentParser> program = std::make_shared<ArgumentParser>(program_name);
-
-  ArgumentParser init_command("init");
-  init_command.add_description("initialize a project by given name");
-  init_command.add_argument("project_name")
-    .required()
-    .help("project name to initialize");
-
-  //init_command.add_argument("-t", "--template")
-  //  .default_value("base")
-  //  .help("template to be created [base | modular(soon)]");
-
-  init_command.parse_args(argc, argv);
-  program->add_subparser(init_command);
-
-  try
-  {
-    program->parse_args(argc, argv);
-    //init_command.parse_args(argc, argv);
-    return program;
-  }
-  catch (std::exception &err)
-  {
-    std::cerr << err.what() << std::endl;
-    std::cerr << *program;
-    return tl::unexpected(cli::error::parse_error);
-  }
+const tl::expected<cli::response, cli::fail>
+cli::new_command::run(std::vector<std::string_view> args) {
+  return tl::unexpected(std::make_pair<cli::error, std::string>(
+      cli::error::command_error, std::string("something was wrong")));
 }
 
-const tl::expected<cli::response, cli::error> cli::run(std::shared_ptr<ArgumentParser> program)
-{
-  const auto p = program.get();
-
-  if (p->get<bool>("--version") == true || p->get<bool>("-v") == true) {
-    cli::version();
-    return cli::response::ok;
+const leaf::result<cli::command> cli::parse(int argc, char *argv[]) {
+  if (argc == 1) {
+    return leaf::new_error(cli::error::not_enough_commands);
   }
 
-  if (p->is_subcommand_used("init")) {
-    const auto project_name = p->at<ArgumentParser>("init")
-      .get<std::string>("project_name");
+  std::vector<std::string_view> args(argv + 1, argv + argc);
+  std::vector<std::string_view> command_args(argv + 2, argv + argc);
 
-    std::cout << "initializing [" << project_name << "]..." << "\n";
-    return cli::response::ok;
+  if (args.at(0) == "new") {
+    return cli::command{"new", command_args, cli::new_command::run};
   }
 
-  return tl::unexpected(cli::error::command_error);
+  return leaf::new_error(cli::error::command_not_found);
 }
-
-const cli::command cli::parse(int argc, char *argv[])
-{
-  // TODO do something
-}
-

@@ -1,11 +1,10 @@
 #pragma once
 
-#include <argparse/argparse.hpp>
 #include <tl/expected.hpp>
 #include <memory>
 #include <functional>
+#include <boost/leaf.hpp>
 
-using namespace argparse;
 using namespace tl;
 
 namespace cli
@@ -13,6 +12,8 @@ namespace cli
   enum class error
   {
     parse_error,
+    not_enough_commands,
+    command_not_found,
     command_error
   };
 
@@ -22,7 +23,7 @@ namespace cli
     error_on_run_command
   };
 
-  using fail = std::pair<error, std::exception&>;
+  using fail = std::pair<error, std::string>;
 
   struct command
   {
@@ -34,9 +35,12 @@ namespace cli
   const std::string VERSION = "v1.0";
 
   const void version();
+  const void usage();
 
-  const expected<std::shared_ptr<ArgumentParser>, error> setup(const std::string program_name, int argc, char *argv[]);
+  const boost::leaf::result<command> parse(int argc, char *argv[]);
 
-  const expected<response, error> run(std::shared_ptr<ArgumentParser> program);
-  const command parse(int argc, char *argv[]);
+  namespace new_command
+  {
+    const expected<cli::response, cli::fail> run(std::vector<std::string_view>);
+  };
 };

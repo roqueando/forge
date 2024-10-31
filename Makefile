@@ -7,9 +7,10 @@ run: $(BUILDDIR)/Makefile
 
 build: $(BUILDDIR)/Makefile
 	@cmake --build build/debug
+	@ln -sf $(BUILDDIR)/compile_commands.json .
 
 $(BUILDDIR)/Makefile:
-	@cmake -DCMAKE_BUILD_TYPE=Debug -B build/debug
+	@cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=20 -B build/debug 
 
 # check and watch is for development purposes
 # you'll need to be installing cppcheck and inotify-tools

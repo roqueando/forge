@@ -5,9 +5,9 @@ file(GLOB SOURCE_LIST
   "${PROJECT_SOURCE_DIR}/src/**/*.cpp"
 )
 
-add_library(${RAWR_LIBRARY_NAME} ${SOURCE_LIST} ${HEADER_LIST})
+add_library(${FORGE_LIBRARY_NAME} ${SOURCE_LIST} ${HEADER_LIST})
 
-target_link_libraries (${RAWR_LIBRARY_NAME} argparse::argparse tl::expected)
+target_link_libraries (${FORGE_LIBRARY_NAME} tl::expected leaf)
 
-target_include_directories(${RAWR_LIBRARY_NAME} PUBLIC ../include)
-target_compile_features(${RAWR_LIBRARY_NAME} PRIVATE cxx_std_23)
+target_include_directories(${FORGE_LIBRARY_NAME} PUBLIC ../include)
+target_compile_features(${FORGE_LIBRARY_NAME} PRIVATE cxx_std_20)

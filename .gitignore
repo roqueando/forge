@@ -3,3 +3,5 @@ tags
 .AppleDouble
 .LSOverride
 build/*
+compile_commands.json
+.cache/*

@@ -8,8 +8,8 @@
 
 The project still in development and the next updates will be the following:
 
-- [ ] create the base args for init a new project
-- [ ] set the same template as a base template
+- [ ] use argc and argv to just generate a project by given name
+- [ ] create the args for adding new things
 - [ ] create tests
 
 ## 💻 pre-requisites
@@ -32,6 +32,8 @@ make build
 ```sh
 make run
 ```
+
+NOTE: Soon this will be in release with only the executable
 
 ## 😄 be a contributor
 
