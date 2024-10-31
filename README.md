@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="images/rawr.png" />
+  <img src="images/forge.png" />
 </p>
 
-> A CLI Project for generate rawr projects.
+> Generate modern C++ projects
 
 ### updates and improvements
 
@@ -22,11 +22,11 @@ If you want to install development tools for this project you'll need some tools
 - cppcheck (for static analysis without building it)
 - inotify-tools (for watching file changes)
 
-## 🚀 installing rawr
-To install `rawr` you need to:
+## 🚀 installing forge
+To install `forge` you need to:
 - clone repository
 ```sh
-git clone https://github.com/roqueando/rawr.git
+git clone https://github.com/roqueando/forge.git
 ```
 - build and test
 ```sh

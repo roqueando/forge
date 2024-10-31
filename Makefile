@@ -1,4 +1,4 @@
-TARGET = rawr
+TARGET = forge
 BUILDDIR = build/debug
 SRCDIR = src
 
