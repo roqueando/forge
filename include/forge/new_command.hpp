@@ -9,7 +9,8 @@ namespace new_command
 {
 enum class error
 {
-  project_name_required
+  project_name_required,
+  directory_exists
 };
 
 const void usage();

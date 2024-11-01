@@ -1,4 +1,5 @@
 #include <boost/leaf/handle_errors.hpp>
+#include <cstdlib>
 #include <forge/cli.hpp>
 #include <forge/new_command.hpp>
 #include <iostream>
@@ -16,21 +17,21 @@ int main(int argc, char *argv[]) {
     -> leaf::result<int> {
       std::cerr << "project name is required!" << std::endl;
       new_command::usage();
-      return -1;
+      return EXIT_FAILURE;
     },
 
     [](leaf::match<cli::error, cli::error::command_not_found>)
     -> leaf::result<int> {
       std::cerr << "command not found" << std::endl;
       cli::usage();
-      return -1;
+      return EXIT_FAILURE;
     },
 
     [](leaf::match<cli::error, cli::error::not_enough_commands>)
     -> leaf::result<int> {
       std::cerr << "not enough commands" << std::endl;
       cli::usage();
-      return -1;
+      return EXIT_FAILURE;
     })
   .value();
 }

@@ -17,10 +17,11 @@ namespace cli
   enum class response
   {
     ok,
-    error_on_run_command
+    parse_error,
+    not_enough_commands,
+    command_not_found,
+    command_error 
   };
-
-  using fail = std::pair<error, std::string>;
 
   struct command
   {
