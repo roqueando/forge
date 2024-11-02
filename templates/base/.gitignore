@@ -1,7 +1,0 @@
-tags
-.DS_Store
-.AppleDouble
-.LSOverride
-build/*
-compile_commands.json
-.cache/*

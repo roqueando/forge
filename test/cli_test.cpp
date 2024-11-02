@@ -1,16 +1,19 @@
 #include <gtest/gtest.h>
 #include <forge/cli.hpp>
 
-TEST(CliTest, ParsingTest) {
-  const auto fn = [](std::vector<std::string_view>) {
+TEST(CliTest, ParsingTest)
+{
+  const auto fn = [](std::vector<std::string_view>)
+  {
     return 0;
   };
   const cli::command result{"new", {"new", "project_name"}, fn};
 
   const int argc = 3;
-  const char* args[] = {"forge", "new", "project_name"};
-  char** argv = new char*[argc + 1];
-  for (int i = 0; i < argc; ++i) {
+  const char *args[] = {"forge", "new", "project_name"};
+  char **argv = new char *[argc + 1];
+  for (int i = 0; i < argc; ++i)
+  {
     argv[i] = new char[strlen(args[i]) + 1];
     std::strcpy(argv[i], args[i]);
   }
