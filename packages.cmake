@@ -8,11 +8,13 @@ CPMAddPackage(
   GIT_SHALLOW ON)
 
 # base package for google testing
-CPMAddPackage(
-  NAME googletest
-  GITHUB_REPOSITORY google/googletest
-  GIT_TAG v1.15.2
-  GIT_SHALLOW ON)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  CPMAddPackage(
+    NAME googletest
+    GITHUB_REPOSITORY google/googletest
+    GIT_TAG v1.15.2
+    GIT_SHALLOW ON)
+endif()
 
 if (leaf_ADDED)
   add_library(leaf INTERFACE IMPORTED)

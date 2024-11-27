@@ -1,6 +1,6 @@
 enable_testing()
-if(BUILD_TESTING)
-  add_executable(forge-test cli_test.cpp)
+if(BUILD_TESTING AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_executable(forge-test cli_test.cpp template_test.cpp)
   target_link_libraries(forge-test PRIVATE GTest::gtest_main ${FORGE_LIBRARY_NAME})
 
   include(GoogleTest)
